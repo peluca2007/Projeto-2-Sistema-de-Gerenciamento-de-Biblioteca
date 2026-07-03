@@ -1,4 +1,3 @@
-```markdown
 # 📚 Sistema de Gerenciamento de Biblioteca
 
 Um sistema web para gerenciar livros, leitores e empréstimos em uma biblioteca, com autenticação segura e controle de acesso por papéis.
@@ -28,13 +27,11 @@ npm run setup
 
 # 4. Inicie o projeto
 npm run dev
-
 ```
 
 Pronto! Acesse:
-
-* **Frontend**: http://localhost:5173
-* **Backend/Swagger**: http://localhost:3001/api-docs
+- **Frontend**: http://localhost:5173
+- **Backend/Swagger**: http://localhost:3001/api-docs
 
 ---
 
@@ -43,7 +40,7 @@ Pronto! Acesse:
 Utilize as credenciais abaixo para acessar o sistema conforme o nível de acesso desejado:
 
 | Usuário | E-mail | Senha |
-| --- | --- | --- |
+|-------|-------|-------|
 | **Admin** | `admin@biblioteca.com` | `Admin@123` (ou valor de `ADMIN_PASSWORD` no .env) |
 | **Bibliotecário** | `biblio@biblioteca.com` | `Biblio@123` |
 | **Leitor 1** | `leitor1@biblioteca.com` | `Leitor@123` |
@@ -54,20 +51,18 @@ Utilize as credenciais abaixo para acessar o sistema conforme o nível de acesso
 ## ✨ Funcionalidades
 
 ### Admin (Gerenciador)
-
-* ✅ Visualizar dashboard com estatísticas
-* ✅ Gerenciar livros (criar, editar, deletar)
-* ✅ Gerenciar leitores (criar, editar, deletar)
-* ✅ Controlar empréstimos e devoluções
-* ✅ Gerenciar usuários do sistema
-* ✅ Consultar documentação Swagger
+- ✅ Visualizar dashboard com estatísticas
+- ✅ Gerenciar livros (criar, editar, deletar)
+- ✅ Gerenciar leitores (criar, editar, deletar)
+- ✅ Controlar empréstimos e devoluções
+- ✅ Gerenciar usuários do sistema
+- ✅ Consultar documentação Swagger
 
 ### Leitor (Usuário comum)
-
-* ✅ Visualizar livros disponíveis
-* ✅ Solicitar empréstimos
-* ✅ Visualizar empréstimos ativos
-* ✅ Devolver livros
+- ✅ Visualizar livros disponíveis
+- ✅ Solicitar empréstimos
+- ✅ Visualizar empréstimos ativos
+- ✅ Devolver livros
 
 ---
 
@@ -81,51 +76,43 @@ Utilize as credenciais abaixo para acessar o sistema conforme o nível de acesso
 ├── .gitignore        → Arquivos ignorados
 ├── package.json      → Dependências raiz
 └── README.md         → Este arquivo
-
 ```
 
 ---
 
 ## 🔌 API - Endpoints Principais
 
-* `POST /api/auth/login` - Autenticação
-* `GET|POST|PUT|DELETE /api/books` - Gerenciar livros
-* `GET|POST|PUT|DELETE /api/readers` - Gerenciar leitores
-* `GET|POST|PUT|DELETE /api/loans` - Gerenciar empréstimos
-* `PUT /api/loans/:id/return` - Devolver livro
-* `GET|POST|PUT|DELETE /api/users` - Gerenciar usuários (Admin)
-* `GET /api-docs` - Documentação completa (Swagger)
+- `POST /api/auth/login` - Autenticação
+- `GET|POST|PUT|DELETE /api/books` - Gerenciar livros
+- `GET|POST|PUT|DELETE /api/readers` - Gerenciar leitores
+- `GET|POST|PUT|DELETE /api/loans` - Gerenciar empréstimos
+- `PUT /api/loans/:id/return` - Devolver livro
+- `GET|POST|PUT|DELETE /api/users` - Gerenciar usuários (Admin)
+- `GET /api-docs` - Documentação completa (Swagger)
 
 ---
 
 ## ❓ Solução de Problemas
 
 **Erro: "Não consegui conectar ao banco de dados"**
-
-* Verifique se o PostgreSQL está rodando
-* Confirme as credenciais no arquivo `.env`
+- Verifique se o PostgreSQL está rodando
+- Confirme as credenciais no arquivo `.env`
 
 **Erro: "Porta já está em uso"**
-
-* Outro processo está usando a porta 3001 ou 5173
-* Feche a aplicação ou mude a porta no `.env`
+- Outro processo está usando a porta 3001 ou 5173
+- Feche a aplicação ou mude a porta no `.env`
 
 **"JWT verification failed" ou token expirado**
-
-* Faça login novamente
+- Faça login novamente
 
 **Frontend não conecta com Backend**
+- Verifique se o backend está rodando (http://localhost:3001)
+- Confirme `VITE_API_URL` no `.env` do frontend
 
-* Verifique se o backend está rodando (http://localhost:3001)
-* Confirme `VITE_API_URL` no `.env` do frontend
-
-**Erro ao rodar `npm run setup**`
-
-* Execute manualmente:
-* `cp backend/.env.example backend/.env`
-* `cp frontend/.env.example frontend/.env`
-
-
+**Erro ao rodar `npm run setup`**
+- Execute manualmente:
+  - `cp backend/.env.example backend/.env`
+  - `cp frontend/.env.example frontend/.env`
 
 ---
 
@@ -143,21 +130,14 @@ Antes de publicar em produção:
 ## 🛑 Importante - GitHub
 
 O arquivo `.gitignore` **protege automaticamente**:
-
-* `.env` (senhas e credenciais)
-* `node_modules/` (dependências)
-* Logs e arquivos temporários
+- `.env` (senhas e credenciais)
+- `node_modules/` (dependências)
+- Logs e arquivos temporários
 
 Não é necessário fazer configuração manual.
 
 ---
 
-**Desenvolvido por:** Pedro Lucas (RA: 2767147)
-
-**Disciplina:** Programação Web Back-end
-
+**Desenvolvido por:** Pedro Lucas (RA: 2767147)  
+**Disciplina:** Programação Web Back-end  
 **Ano:** 2026
-
-```
-
-```
