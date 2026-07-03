@@ -1,0 +1,15 @@
+{
+  "name": "biblioteca-projeto-2",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "setup": "node -e \"const fs = require('fs'); fs.copyFileSync('./backend/.env.example', './backend/.env'); fs.copyFileSync('./frontend/.env.example', './frontend/.env');\"",
+    "dev": "node scripts/dev.js",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev"
+  }
+}
