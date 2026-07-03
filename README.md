@@ -16,7 +16,7 @@ Um sistema web para gerenciar livros, leitores e empréstimos em uma biblioteca,
 
 ```bash
 # 1. Clone o repositório
-git clone (https://github.com/peluca2007/Projeto-2-Sistema-de-Gerenciamento-de-Biblioteca.git)
+git clone "https://github.com/peluca2007/Projeto-2-Sistema-de-Gerenciamento-de-Biblioteca.git"
 cd "Projeto-2-Sistema-de-Gerenciamento-de-Biblioteca"
 
 # 2. Instale as dependências
