@@ -14,6 +14,13 @@ User.hasOne(Reader, {
   onUpdate: 'CASCADE',
 });
 
+// Exemplo no arquivo de associações dos Models
+Book.hasMany(Loan, { foreignKey: 'bookId', onDelete: 'CASCADE' });
+Loan.belongsTo(Book, { foreignKey: 'bookId' });
+
+Reader.hasMany(Loan, { foreignKey: 'readerId', onDelete: 'CASCADE' });
+Loan.belongsTo(Reader, { foreignKey: 'readerId' });
+
 Reader.belongsTo(User, {
   foreignKey: {
     name: 'userId',

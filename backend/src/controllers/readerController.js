@@ -101,16 +101,30 @@ async function updateReader(req, res) {
 
   return res.json(cleanReader(reader));
 }
-
 async function deleteReader(req, res) {
-  const reader = await Reader.findByPk(req.params.id);
+  try {
+    const reader = await Reader.findByPk(req.params.id);
+    
+    if (!reader) {
+      return res.status(404).json({ message: 'Leitor não encontrado.' });
+    }
 
-  if (!reader) {
-    return res.status(404).json({ message: 'Leitor não encontrado.' });
+    // Tenta deletar
+    await reader.destroy();
+    return res.status(204).send();
+
+  } catch (error) {
+    // Tratamento específico para evitar o crash do servidor
+    if (error.name === 'SequelizeForeignKeyConstraintError') {
+      return res.status(409).json({ 
+        message: 'Não é possível excluir este leitor, pois ele possui histórico de empréstimos. Considere Inativá-lo (Soft Delete) em vez de excluir.' 
+      });
+    }
+
+    // Caso seja outro tipo de erro
+    console.error("Erro fatal ao excluir:", error);
+    return res.status(500).json({ message: 'Erro interno ao processar a exclusão.' });
   }
-
-  await reader.destroy();
-  return res.status(204).send();
 }
 
 module.exports = {

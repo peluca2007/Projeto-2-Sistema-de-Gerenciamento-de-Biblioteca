@@ -160,19 +160,32 @@ async function updateBook(req, res) {
   await book.save();
 
   return res.json(cleanBook(book));
-}
+  
+}async function deleteBook(req, res) {
+  try {
+    const book = await Book.findByPk(req.params.id);
 
-async function deleteBook(req, res) {
-  const book = await Book.findByPk(req.params.id);
+    if (!book) {
+      return res.status(404).json({ message: 'Livro não encontrado.' });
+    }
 
-  if (!book) {
-    return res.status(404).json({ message: 'Livro não encontrado.' });
+    // Tenta deletar o livro
+    await book.destroy();
+    return res.status(204).send();
+
+  } catch (error) {
+    // Se o erro for de chave estrangeira (histórico de empréstimo)
+    if (error.name === 'SequelizeForeignKeyConstraintError') {
+      return res.status(409).json({ 
+        message: 'Não é possível excluir este livro, pois ele possui um histórico de empréstimos. Tente inativá-lo em vez de excluir.' 
+      });
+    }
+
+    // Se for outro erro, retorna 500
+    console.error("Erro ao excluir livro:", error);
+    return res.status(500).json({ message: 'Erro interno ao processar a exclusão.' });
   }
-
-  await book.destroy();
-  return res.status(204).send();
 }
-
 module.exports = {
   listBooks,
   getBookById,

@@ -46,16 +46,32 @@ export default function BooksPage() {
     setFilters((current) => ({ ...current, [event.target.name]: event.target.value }));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    await loadBooks(filters);
-  };
-
   const handleFormChange = (event) => {
     setForm((current) => ({
       ...current,
       [event.target.name]: event.target.type === 'number' ? Number(event.target.value) : event.target.value,
     }));
+  };
+
+  // FUNÇÃO ÚNICA E CORRIGIDA
+  const handleDelete = async (id) => {
+    if (!confirm('Excluir este livro?')) return;
+    setError(null);
+    try {
+      await deleteBook(id);
+      await loadBooks(filters);
+    } catch (err) {
+      if (err.response?.status === 409) {
+        alert("Este item não pode ser excluído pois possui histórico de empréstimos. Tente marcá-lo como 'Indisponível' na edição.");
+      } else {
+        setError(err.response?.data?.message || err.message || 'Erro ao excluir livro');
+      }
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await loadBooks(filters);
   };
 
   const handleCreate = async (event) => {
@@ -109,18 +125,6 @@ export default function BooksPage() {
       status: book.status,
     });
     setShowForm(true);
-  };
-
-  const handleDelete = async (bookId) => {
-    if (!confirm('Excluir este livro?')) return;
-    setError(null);
-
-    try {
-      await deleteBook(bookId);
-      await loadBooks(filters);
-    } catch (err) {
-      setError(err.message || 'Erro ao excluir livro');
-    }
   };
 
   return (

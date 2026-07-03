@@ -11,7 +11,7 @@ async function startServer() {
   try {
     await ensureDatabaseExists();
     await sequelize.authenticate();
-    await sequelize.sync({ alter: true });
+   await sequelize.sync({ force: true });
     await bootstrapAdmin();
 
     app.listen(PORT, () => {
